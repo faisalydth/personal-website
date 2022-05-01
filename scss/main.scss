@@ -1,0 +1,616 @@
+// Compiled in terminal for Dart SASS --> sass scss/main.scss css/main.css
+
+// Mixin
+
+@mixin flex-box($par-jst-content: flex-start, $par-alg-items: flex-start, $par-flex-dir: row) {
+  display: flex;
+  justify-content: $par-jst-content;
+  align-items: $par-alg-items;
+  flex-direction: $par-flex-dir;
+}
+
+// Import font
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// Variables
+
+$var-border-red: 1px solid red;
+$var-font-fam: 'Poppins',
+sans-serif;
+
+$var-col-black: hsl(0, 0%, 5%);
+$var-col-white: hsl(0, 0%, 95%);
+
+$var-col-bs-green: hsl(158, 95%, 34%);
+$var-col-bs-green-dk: hsl(158, 95%, 23%);
+$var-col-bs-green-lt: hsl(158, 95%, 50%);
+$var-col-bs-blue: hsl(193, 56%, 17%);
+$var-col-bs-blue-dk: hsl(193, 56%, 9%);
+$var-col-bs-gray: hsl(251, 9%, 65%);
+$var-col-bs-gray-dk: hsl(251, 2%, 24%);
+$var-col-bs-gray-lt: hsl(251, 5%, 94%);
+
+$var-h-hdr: 2.25rem;
+$var-h-hdr-home: 3.75rem;
+
+// Scrollbar
+
+::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.25rem $var-col-bs-gray-dk;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $var-col-bs-gray-dk;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $var-col-bs-green-dk;
+}
+
+// Base
+
+html {
+  font-family: $var-font-fam;
+  font-size: 1rem;
+  font-weight: 400;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: $var-col-white;
+  color: $var-col-black;
+  @include flex-box(flex-start, center, column);
+}
+
+// Header
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: 0.4s;
+  font-size: 0.85rem;
+  background-color: $var-col-bs-gray-dk;
+  color: $var-col-white;
+  @include flex-box(space-between, center, column);
+
+  @media screen and (min-width: 600px) {
+    font-size: 1rem;
+    background: none;
+  }
+
+  #hdr-left {
+    width: 100%;
+    height: $var-h-hdr;
+    @include flex-box(space-between, center, row);
+
+    @media screen and (min-width: 600px) {
+      width: 85%;
+      height: $var-h-hdr-home;
+    }
+
+    @media screen and (min-width: 960px) {
+      width: 75%;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 60%;
+    }
+
+    #nav-menu,
+    #nav-theme {
+      width: 3.75rem;
+      height: 100%;
+      padding: 0 1rem;
+    }
+
+    a {
+      @include flex-box(center, center, row);
+
+      img {
+        height: 1.25rem;
+        filter: brightness(0) invert(1);
+
+        @media screen and (min-width: 600px) {
+          height: 1.5rem;
+          padding: 0 1rem;
+        }
+      }
+    }
+
+    #nav-menu {
+      cursor: pointer;
+      word-spacing: 4px;
+      @include flex-box(flex-start, center, row);
+    }
+
+    #nav-menu:hover {
+      background-color: $var-col-bs-green;
+    }
+
+    #nav-menu.open {
+      background-color: $var-col-bs-green;
+    }
+
+    #nav-menu.hidden {
+      display: none;
+    }
+
+    #nav-theme {
+      @include flex-box(flex-end, center, row);
+
+      #nav-list {
+        @include flex-box(flex-start, center, row);
+
+        .btn-nav {
+          padding: 0 0.5rem;
+
+          @media screen and (min-width: 1024px) {
+            padding: 0 1rem;
+          }
+        }
+
+        .btn-nav:hover {
+          color: $var-col-bs-green-lt;
+        }
+      }
+
+      #nav-list.hidden {
+        display: none;
+      }
+
+      #btn-theme {
+        cursor: pointer;
+        padding-left: 0.5rem;
+
+        @media screen and (min-width: 1024px) {
+          padding-left: 1rem;
+        }
+      }
+
+      #btn-theme:hover {
+        color: $var-col-bs-green-lt;
+      }
+    }
+  }
+
+  #hdr-right {
+    width: 100%;
+    @include flex-box(flex-start, center, column);
+
+    .btn-nav {
+      width: 100%;
+      height: $var-h-hdr;
+      padding: 0 1rem;
+      border-top: 1px solid $var-col-bs-gray;
+      @include flex-box(flex-start, center, row);
+    }
+
+    .btn-nav:hover {
+      background-color: $var-col-bs-green;
+    }
+  }
+
+  #hdr-right.hidden {
+    display: none;
+  }
+}
+
+header.sticky {
+  font-size: 0.85rem;
+  background-color: $var-col-bs-gray-dk;
+  color: $var-col-white;
+
+  #hdr-left {
+    height: $var-h-hdr;
+
+    a img {
+      height: 1.25rem;
+    }
+
+    #nav-theme {
+      height: 100%;
+
+      #nav-list {
+        height: 100%;
+
+        .btn-nav {
+          height: 100%;
+        }
+
+        .btn-nav:hover {
+          background-color: $var-col-bs-green;
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+
+// General section
+
+section {
+  width: 100vw;
+  // min-height: 100vh;
+}
+
+.sect-box {
+  height: 100%;
+  width: 100%;
+  padding-top: $var-h-hdr * 1.5;
+  padding-bottom: $var-h-hdr * 1.5 - $var-h-hdr;
+  @include flex-box(flex-start, center, column);
+
+  .sect-title {
+    padding-bottom: 1.5rem;
+    @include flex-box(flex-start, center, column);
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: $var-col-bs-green;
+    }
+
+    p {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: $var-col-bs-gray-dk;
+    }
+
+    @media screen and (min-width: 600px) and (orientation: portrait) {
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media screen and (min-width: 960px) and (orientation: landscape) {
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media screen and (min-width: 1280px) {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Home
+
+#home {
+  height: 100vh;
+  background-image: url(../img/png/home-bg.png);
+  background-color: $var-col-black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  #home-box {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    @include flex-box(space-between, center, column);
+
+    @media screen and (min-width: 600px) {
+      padding-top: $var-h-hdr-home;
+    }
+
+    #home-intro {
+      padding-top: 1rem;
+      @include flex-box(flex-start, center, column);
+
+      p {
+        font-size: 0.8rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+        word-spacing: 1px;
+      }
+
+      #hello {
+        font-size: 0.65rem;
+        color: $var-col-bs-gray-lt;
+        margin-bottom: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        word-spacing: 2px;
+        color: $var-col-bs-green-lt;
+      }
+
+      @media screen and (orientation: landscape) {
+        padding-top: 0;
+
+        #hello {
+          margin-bottom: 0.25rem;
+        }
+      }
+
+      @media screen and (min-width: 600px) and (orientation: portrait) {
+        padding-top: 3.5rem;
+
+        p {
+          font-size: 1rem;
+          letter-spacing: 1.5px;
+          word-spacing: 1.5px;
+        }
+
+        #hello {
+          font-size: 0.85rem;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          letter-spacing: 3px;
+          word-spacing: 3px;
+        }
+      }
+
+      @media screen and (min-width: 960px) and (orientation: landscape) {
+        padding-top: 2rem;
+
+        p {
+          font-size: 1rem;
+          letter-spacing: 1.5px;
+          word-spacing: 1.5px;
+        }
+
+        #hello {
+          font-size: 0.85rem;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          letter-spacing: 3px;
+          word-spacing: 3px;
+        }
+      }
+
+      @media screen and (min-width: 1280px) and (orientation: landscape) {
+        p {
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          word-spacing: 2px;
+        }
+
+        #hello {
+          font-size: 1.25rem;
+        }
+
+        h1 {
+          font-size: 4rem;
+          letter-spacing: 4px;
+          word-spacing: 4px;
+        }
+      }
+    }
+
+    #home-social {
+      font-size: 1.5rem;
+      padding-bottom: 3rem;
+      @include flex-box(flex-end, flex-end, row);
+
+      .btn-social {
+        padding: 0 0.5rem;
+      }
+
+      .btn-social:hover {
+        font-size: 2rem;
+      }
+
+      @media screen and (orientation: landscape) {
+        padding-bottom: 1.5rem;
+      }
+
+      @media screen and (min-width: 600px) and (orientation: portrait) {
+        font-size: 2rem;
+        padding-bottom: 5rem;
+
+        .btn-social {
+          padding: 0 1rem;
+        }
+
+        .btn-social:hover {
+          font-size: 2.75rem;
+        }
+      }
+
+      @media screen and (min-width: 960px) and (orientation: landscape) {
+        font-size: 2rem;
+        padding-bottom: 3.75rem;
+
+        .btn-social {
+          padding: 0 1rem;
+        }
+
+        .btn-social:hover {
+          font-size: 2.75rem;
+        }
+      }
+
+      @media screen and (min-width: 1280px) and (orientation: landscape) {
+        font-size: 2.5rem;
+
+        .btn-social {
+          padding: 0 1.5rem;
+        }
+
+        .btn-social:hover {
+          font-size: 3.5rem;
+        }
+      }
+    }
+  }
+}
+
+// About
+
+#about .sect-box .sect-content {
+  width: 80vw;
+  @include flex-box(flex-start, center, column);
+
+  @media screen and (min-width: 960px) {
+    @include flex-box(flex-start, flex-start, row);
+  }
+
+  img {
+    width: 60%;
+    max-width: 200px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background-color: $var-col-bs-gray-lt;
+    border: 2px solid $var-col-bs-green-dk;
+
+    @media screen and (min-width: 960px) {
+      margin-right: 2.5rem;
+    }
+
+    @media screen and (min-width: 1280px) {
+      max-width: 250px;
+    }
+  }
+
+  .cont-right {
+    width: 100%;
+    @include flex-box(flex-start, center, column);
+
+    @media screen and (min-width: 960px) {
+      @include flex-box(flex-start, flex-start, column);
+    }
+
+    h3 {
+      font-weight: 600;
+      text-align: center;
+      width: 100%;
+      padding-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      border-top: 1px solid $var-col-bs-green-dk;
+
+      @media screen and (min-width: 960px) {
+        text-align: left;
+      }
+    }
+
+    .content {
+      text-align: center;
+      margin-bottom: 1rem;
+
+      @media screen and (min-width: 960px) {
+        text-align: left;
+      }
+    }
+
+    .btn-skills {
+      cursor: pointer;
+    }
+
+    .btn-skills.close {
+      margin-bottom: 0.5rem;
+    }
+
+    .dtl-skills {
+      width: 100%;
+      padding: 0.5rem 0;
+
+      .grp-skills {
+        width: 100%;
+        padding: 0.5rem;
+        @include flex-box(flex-start, center, column);
+
+        @media screen and (min-width: 960px) {
+          @include flex-box(flex-start, baseline, row);
+        }
+
+        .name-skills {
+          font-size: 0.8rem;
+          text-align: center;
+
+          @media screen and (min-width: 960px) {
+            text-align: left;
+            width: 20%;
+            max-width: 20%;
+          }
+
+          @media screen and (min-width: 1280px) {
+            width: 12.5%;
+            max-width: 12.5%;
+          }
+        }
+
+        .grp-bar {
+          width: 100%;
+          @include flex-box(center, center, row);
+
+          @media screen and (min-width: 960px) {
+            @include flex-box(flex-end, baseline, row);
+          }
+
+          .bar-full {
+            height: 0.5rem;
+            width: 80%;
+            border-radius: 0.25rem;
+            background-color: $var-col-bs-gray;
+
+            .bar-fill {
+              height: 0.5rem;
+              width: 10%;
+              border-radius: 0.25rem;
+              background-color: $var-col-bs-green;
+            }
+          }
+
+          .pct-skills {
+            font-size: 0.65rem;
+            text-align: left;
+            color: $var-col-bs-green-dk;
+          }
+        }
+
+      }
+    }
+
+    .dtl-skills.hidden {
+      display: none;
+    }
+  }
+}
+
+// Footer
+
+footer {
+  font-size: 0.85rem;
+  width: 100%;
+  background-color: $var-col-bs-green;
+  color: $var-col-bs-gray-lt;
+  @include flex-box(center, center, row);
+
+  p {
+    padding: 0.25rem 0;
+  }
+}
